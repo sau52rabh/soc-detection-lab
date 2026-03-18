@@ -1,0 +1,24 @@
+Alert Name: Port Scan Detection
+
+Query:
+index=* Sourcetype=WinEventLog://Microsoft-Windows-Sysmon/Operational EventCode=3
+| stats count by SourceIp DestinationIp
+| where count > 5
+
+Trigger:
+Real-time
+
+Trigger Condition:
+For each result
+
+Trigger when:
+Number of results > 0
+
+Throttle:
+Enabled
+
+Throttle Field:
+SourceIp
+
+Throttle Time:
+1 minute

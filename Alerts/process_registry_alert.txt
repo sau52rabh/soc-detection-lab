@@ -1,0 +1,23 @@
+Alert Name: Suspicious Process / Registry Activity
+
+Query:
+index=* Sourcetype=WinEventLog://Microsoft-Windows-Sysmon/Operational (EventCode=1 OR EventCode=13)
+| search Image="*cmd.exe" OR Image="*powershell.exe"
+
+Trigger:
+Real-time
+
+Trigger Condition:
+For each result
+
+Trigger when:
+Number of results > 0
+
+Throttle:
+Enabled
+
+Throttle Field:
+Image
+
+Throttle Time:
+1 minute

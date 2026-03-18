@@ -1,0 +1,2 @@
+index=* Sourcetype=WinEventLog://Microsoft-Windows-Sysmon/Operational EventCode=1
+| table _time Image CommandLine User

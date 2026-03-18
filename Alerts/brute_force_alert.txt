@@ -1,0 +1,24 @@
+Alert Name: Brute Force Login Detection
+
+Query:
+index=* EventCode=4625
+| stats count by Account_Name
+| where count > 5
+
+Trigger:
+Real-time
+
+Trigger Condition:
+For each result
+
+Trigger when:
+Number of results > 0
+
+Throttle:
+Enabled
+
+Throttle Field:
+Account_Name
+
+Throttle Time:
+1 minute
